@@ -1,0 +1,27 @@
+{%  extends 'base.html' %}
+
+{%block title_head %}
+<title>Usuarios</title>
+{% endblock title_head %}
+
+{%block h1_header %}
+Usuarios
+{% endblock h1_header %}
+
+{%block contenido %}
+<button>
+    <a class="navbar-brand" href={% url 'inicio:agregar_usuario' %}>Agrear Usuario</a>
+</button>
+<form action= "" method="get">
+    {{formulario}}
+    <button>Buscar</button> 
+</form>
+
+{%if Usuario%} 
+{%for Usuario in Usuario%}
+<li>NOMBRE:{{Usuario.nombre}} - DIRECCION:{{Usuario.direccion}} - FECHA DE ALTA:{{Usuario.fecha_alta}}</li>
+{% endfor %}
+{%else%}
+<p>No Hay Datos Que Coincidan Con La Busqueda</p> 
+{% endif %} 
+{% endblock contenido %}

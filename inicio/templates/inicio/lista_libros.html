@@ -1,0 +1,27 @@
+{%  extends 'base.html' %}
+
+{%block title_head %}
+<title>Libros</title>
+{% endblock title_head %}
+
+{%block h1_header %}
+Listado de Libros
+{% endblock h1_header %}
+
+{%block contenido %}
+<button>
+    <a class="navbar-brand" href={% url 'inicio:crear_libro' %}>Agrear Libro</a>
+</button>
+<form action= "" method="get">
+    {{formulario}}
+    <button>Buscar</button> 
+</form>
+
+{%if Libros%} 
+{%for Libro in Libros%}
+<li>Titulo:{{Libro.titulo}} - Autor:{{Libro.autor}} - Editorial:{{Libro.editorial}}</li>
+{% endfor %}
+{%else%}
+<p>No Hay Datos Que Coincidan Con La Busqueda</p> 
+{% endif %} 
+{% endblock contenido %}
