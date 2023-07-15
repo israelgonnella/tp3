@@ -12,14 +12,32 @@ Listado de Libros
 <button>
     <a class="navbar-brand" href={% url 'inicio:crear_libro' %}>Agrear Libro</a>
 </button>
-<form action= "" method="get">
+
+{% comment %} <form action= "" method="get">
     {{formulario}}
+    <button>Buscar</button> 
+</form> {% endcomment %}
+
+<form action={% url 'inicio:lista_libros' %}>
+    <table>
+      {{formulario}}
+    </table>
     <button>Buscar</button> 
 </form>
 
 {%if Libros%} 
 {%for Libro in Libros%}
-<li>Titulo:{{Libro.titulo}} - Autor:{{Libro.autor}} - Editorial:{{Libro.editorial}}</li>
+{% comment %} <li>Titulo: {{Libro.titulo}} - Autor: {{Libro.autor}} - Editorial: {{Libro.editorial}}</li> {% endcomment %}
+<li>
+    {% comment %} {{Libro}} {% endcomment %}
+    <a class="navbar-brand" href={% url 'inicio:detalle_libros' Libro.id %}>{{Libro}}</a>
+    <button>
+    <a class="navbar-brand" href={% url 'inicio:modificar_libros' Libro.id %}>Modificar</a>
+    </button> 
+    <button>
+    <a class="navbar-brand" href={% url 'inicio:eliminar_libros' Libro.id %}>Eliminar</a>
+    </button> 
+</li>
 {% endfor %}
 {%else%}
 <p>No Hay Datos Que Coincidan Con La Busqueda</p> 

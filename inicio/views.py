@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from inicio.forms import CrearLibroFormulario, BuscarLibroFormulario, BuscarUsuarioFormulario, AgregarUsuarioFormulario
 from inicio.models import Libro, Usuario
+from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.detail import DetailView
+from django.urls import reverse_lazy
 # Create your views here.
 
 def inicio(request):
@@ -24,7 +27,7 @@ def crear_libro(request):
 def lista_libros(request):
     formulario = BuscarLibroFormulario(request.GET)
     if formulario.is_valid():
-            titulo_buscar = formulario.cleaned_data['titulo']
+            titulo_buscar = formulario.cleaned_data.get('titulo', '')
             listado_libros = Libro.objects.filter(titulo__icontains=titulo_buscar)
     formulario = BuscarLibroFormulario()
     return render(request,'inicio/lista_libros.html', {'formulario': formulario, 'Libros': listado_libros})
@@ -47,7 +50,25 @@ def agregar_usuario(request):
 def lista_usuarios(request):
     formulario = BuscarUsuarioFormulario(request.GET)
     if formulario.is_valid():
-            nombre_buscar = formulario.cleaned_data['nombre']
+            nombre_buscar = formulario.cleaned_data.get('nombre','')
             listado_usuarios = Usuario.objects.filter(nombre__icontains=nombre_buscar)
     formulario = BuscarUsuarioFormulario()
     return render(request,'inicio/usuario.html', {'formulario': formulario, 'Usuario': listado_usuarios})
+
+
+class DetalleLibro(DetailView):
+    model = Libro
+    template_name = "inicio/detalle_libros.html"
+    
+    
+class ModificarLibro(UpdateView):
+    model = Libro
+    fields= ['titulo', 'autor', 'año', 'editorial']
+    template_name = "inicio/modificar_libros.html"
+    success_url = reverse_lazy('inicio:lista_libros')
+    
+
+class EliminarLibro(DeleteView):
+    model = Libro
+    template_name = "inicio/eliminar_libros.html"
+    success_url = reverse_lazy('inicio:lista_libros')

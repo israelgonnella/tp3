@@ -12,14 +12,25 @@ Usuarios
 <button>
     <a class="navbar-brand" href={% url 'inicio:agregar_usuario' %}>Agrear Usuario</a>
 </button>
-<form action= "" method="get">
+{% comment %} <form action= "" method="get">
     {{formulario}}
+    <button>Buscar</button> 
+</form> {% endcomment %}
+
+
+<form action={% url 'inicio:usuario' %}>
+    <table>
+      {{formulario}}
+    </table>
     <button>Buscar</button> 
 </form>
 
 {%if Usuario%} 
 {%for Usuario in Usuario%}
-<li>NOMBRE:{{Usuario.nombre}} - DIRECCION:{{Usuario.direccion}} - FECHA DE ALTA:{{Usuario.fecha_alta}}</li>
+{% comment %} <li>NOMBRE:{{Usuario.nombre}} - DIRECCION:{{Usuario.direccion}} - FECHA DE ALTA:{{Usuario.fecha_alta}}</li> {% endcomment %}
+<li>
+    {{Usuario}}
+</li>
 {% endfor %}
 {%else%}
 <p>No Hay Datos Que Coincidan Con La Busqueda</p> 

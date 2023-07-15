@@ -1,0 +1,20 @@
+{%  extends 'base.html' %}
+
+{%block title_head %}
+<title>Eliminar Libro</title>
+{% endblock title_head %}
+
+{%block h1_header %}
+Eliminando Libro {{Libro.titulo}}
+{% endblock h1_header %}
+
+{%block contenido %}
+
+
+<form action={% url 'inicio:eliminar_libros' %} method= "post">
+    {% csrf_token %}
+    <p> Esta por eliminar el libro:  {{Libro}}</p>
+    <button>Confirmar</button>
+</form>
+
+{% endblock contenido %}
