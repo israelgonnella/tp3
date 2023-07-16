@@ -9,7 +9,7 @@ Modificando Libro {{Libro.titulo}}
 {% endblock h1_header %}
 
 {%block contenido %}
-<form action={% url 'inicio:modificar_libros' Libro.id %}>
+<form method= "post">
     {% csrf_token %}
     <table>
         {{form}}
