@@ -72,3 +72,5 @@ class EliminarLibro(DeleteView):
     model = Libro
     template_name = "inicio/eliminar_libros.html"
     success_url = reverse_lazy('inicio:lista_libros')
+    
+
