@@ -10,7 +10,7 @@ Login
 
 {%block contenido %}
 <form action= {% url 'lectores:login' %} method="POST"> 
-    {% csrf_token %}
+  {% csrf_token %} 
     <table>
       {{formulario}}
     </table>

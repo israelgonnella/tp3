@@ -9,7 +9,7 @@ Registro
 {% endblock h1_header %}
 
 {%block contenido %}
-<form action= {% url 'lectores:registrarse' %} method="POST"> 
+<form action= {% url 'lectores:registro' %} method="POST"> 
     {% csrf_token %}
     <table>
       {{formulario}}
