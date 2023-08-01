@@ -1,16 +1,16 @@
 {%  extends 'base.html' %}
 
 {%block title_head %}
-<title>Usuarios</title>
+<title>Lectores</title>
 {% endblock title_head %}
 
 {%block h1_header %}
-Usuarios
+Lectores
 {% endblock h1_header %}
 
 {%block contenido %}
 <button>
-    <a class="navbar-brand" href={% url 'inicio:agregar_usuario' %}>Agrear Usuario</a>
+    <a class="navbar-brand" href={% url 'inicio:agregar_usuario' %}>Agrear Lector</a>
 </button>
 {% comment %} <form action= "" method="get">
     {{formulario}}
